@@ -172,11 +172,11 @@ void retro_set_environment(retro_environment_t cb)
     { option_auto_save, "Auto save/load states; disabled|enabled" },
     { option_mouse, "XY device (Restart); none|lightgun|mouse" },
     { option_throttle, "Enable throttle; disabled|enabled" },
-    { option_cheats, "Enable cheats; disabled|enabled" },
+    { option_cheats, "Enable cheats; enabled|disabled" },
 //  { option_nobuffer, "Nobuffer patch; disabled|enabled" },
     { option_nag, "Hide nag screen; disabled|enabled" },
-    { option_info, "Hide gameinfo screen; disabled|enabled" },
-    { option_warnings, "Hide warnings screen; disabled|enabled" },
+    { option_info, "Hide gameinfo screen; enabled|disabled" },
+    { option_warnings, "Hide warnings screen; enabled|disabled" },
     { option_renderer, "Alternate render method; disabled|enabled" },
 
 #if !defined(WANT_PHILIPS_CDI)
@@ -427,7 +427,7 @@ void retro_get_system_info(struct retro_system_info *info)
 #elif defined(WANT_UME)
    info->library_name     = "UME 2015";
 #elif defined(WANT_PHILIPS_CDI)
-   info->library_name     = "Philips CD-i 2015";
+   info->library_name     = "EZ CDi Xtreme";
 #else
    info->library_name     = "MAME 2015";
 #endif

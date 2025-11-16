@@ -1889,7 +1889,7 @@ static slider_state *slider_init(running_machine &machine)
 		{
 			void *param = (void *)&exec->device();
 			string.printf("Overclock CPU %s", exec->device().tag());
-			*tailptr = slider_alloc(machine, string, 10, 1000, 2000, 1, slider_overclock, param);
+			*tailptr = slider_alloc(machine, string, 100, 1000, 4000, 10, slider_overclock, param);
 			tailptr = &(*tailptr)->next;
 		}
 	}
@@ -1908,7 +1908,7 @@ static slider_state *slider_init(running_machine &machine)
 		if (machine.options().cheat())
 		{
 			string.printf("%s Refresh Rate", slider_get_screen_desc(*screen));
-			*tailptr = slider_alloc(machine, string, -10000, 0, 10000, 1000, slider_refresh, param);
+			*tailptr = slider_alloc(machine, string, -40000, 0, 20000, 1000, slider_refresh, param);
 			tailptr = &(*tailptr)->next;
 		}
 

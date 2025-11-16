@@ -68,7 +68,7 @@ $(info COREDEF = $(CORE_DEFINE))
 
 ifeq ($(SUBTARGET), cdi)
    TARGET := mame
-   TARGET_NAME = cdi2015
+   TARGET_NAME = km_ez_cdi_xtreme
    CORE_DEFINE := -DWANT_PHILIPS_CDI
 endif 
 
