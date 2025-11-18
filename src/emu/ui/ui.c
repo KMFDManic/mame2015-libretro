@@ -1456,6 +1456,14 @@ UINT32 ui_manager::handler_ingame(running_machine &machine, render_container *co
 {
 	bool is_paused = machine.paused();
 
+       static bool frameskip_forced = false;
+       if (!frameskip_forced)
+       {
+           // Force default frameskip to 2 (use 1 if you prefer)
+           machine.video().set_frameskip(2);
+           frameskip_forced = true;
+       }
+
 	// first draw the FPS counter
 	if (machine.ui().show_fps_counter())
 	{
