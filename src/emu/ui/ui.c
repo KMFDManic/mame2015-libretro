@@ -1908,7 +1908,7 @@ static slider_state *slider_init(running_machine &machine)
 		if (machine.options().cheat())
 		{
 			string.printf("%s Refresh Rate", slider_get_screen_desc(*screen));
-			*tailptr = slider_alloc(machine, string, -40000, 0, 20000, 1000, slider_refresh, param);
+			*tailptr = slider_alloc(machine, string, -55000, 0, 60000, 1000, slider_refresh, param);
 			tailptr = &(*tailptr)->next;
 		}
 
