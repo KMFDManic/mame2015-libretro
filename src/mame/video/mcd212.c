@@ -1623,9 +1623,6 @@ void mcd212_device::ab_init()
 void cdi_state::video_start()
 {
 	m_mcd212->ab_init();
-
-	screen_device *screen = downcast<screen_device *>(machine().device("lcd"));
-	screen->register_screen_bitmap(m_lcdbitmap);
 }
 
 UINT32 cdi_state::screen_update_cdimono1(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
@@ -1636,6 +1633,5 @@ UINT32 cdi_state::screen_update_cdimono1(screen_device &screen, bitmap_rgb32 &bi
 
 UINT32 cdi_state::screen_update_cdimono1_lcd(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
 {
-	copybitmap(bitmap, m_lcdbitmap, 0, 0, 0, 0, cliprect);
 	return 0;
 }
