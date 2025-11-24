@@ -56,6 +56,7 @@ static char option_read_config[50];
 static char option_write_config[50];
 static char option_auto_save[50];
 static char option_throttle[50];
+static char option_turboboost[50];
 static char option_nobuffer[50];
 static char option_saves[50];
 
@@ -152,6 +153,7 @@ void retro_set_environment(retro_environment_t cb)
    sprintf(option_auto_save,"%s_%s",core,"auto_save");
    sprintf(option_saves,"%s_%s",core,"saves");
    sprintf(option_throttle,"%s_%s",core,"throttle");
+   sprintf(option_turboboost, "%s_%s", core, "turboboost");
   sprintf(option_nobuffer,"%s_%s",core,"nobuffer");
 
    static const struct retro_variable vars[] = {
@@ -172,9 +174,10 @@ void retro_set_environment(retro_environment_t cb)
     { option_auto_save, "Auto save/load states; disabled|enabled" },
     { option_mouse, "XY device (Restart); none|lightgun|mouse" },
     { option_throttle, "Enable throttle; disabled|enabled" },
+    { option_turboboost, "Xtreme TurboBoost (Ini Speed); 1.1324691|.25|.50|0.75|1.00|1.25|1.50|1.75|2.00|2.25|2.50|2.75|3.00|3.25|3.50|3.75|4.00|4.25|4.50|4.75|5.00" },
     { option_cheats, "Enable cheats; enabled|disabled" },
 //  { option_nobuffer, "Nobuffer patch; disabled|enabled" },
-    { option_nag, "Hide nag screen; disabled|enabled" },
+    { option_nag, "Hide nag screen; enabled|disabled" },
     { option_info, "Hide gameinfo screen; enabled|disabled" },
     { option_warnings, "Hide warnings screen; enabled|disabled" },
     { option_renderer, "Alternate render method; disabled|enabled" },
@@ -243,6 +246,32 @@ static void check_variables(void)
       if (!strcmp(var.value, "enabled"))
          throttle_enable = true;
    }
+
+var.key   = option_turboboost;
+var.value = NULL;
+
+if (environ_cb(RETRO_ENVIRONMENT_GET_VARIABLE, &var) && var.value)
+{
+   float s = (float)atof(var.value);  /* or strtof(var.value, NULL) */
+
+   /* Clamp to a sane range, just in case */
+   if (s < 0.10f)
+      s = 0.10f;
+   if (s > 20.00f)
+      s = 20.00f;
+
+   turboboost_speed  = s;
+   /* Treat 1.0 as “off/normal” (no -speed) */
+   if (s == 1.0f)
+      turboboost_enable = false;
+   else
+      turboboost_enable = true;
+}
+else
+{
+   turboboost_speed  = 1.0f;
+   turboboost_enable = false;
+}
 
    var.key   = option_nobuffer;
    var.value = NULL;
@@ -467,7 +496,7 @@ void retro_get_system_av_info(struct retro_system_av_info *info)
       log_cb(RETRO_LOG_INFO, "AV_INFO: aspect_ratio = %f\n",info->geometry.aspect_ratio);
 
    info->timing.fps            = retro_fps;
-   info->timing.sample_rate    = 48000.0;
+   info->timing.sample_rate    = 22050.0;
 
    if (log_cb)
       log_cb(RETRO_LOG_INFO, "AV_INFO: fps = %f sample_rate = %f\n",info->timing.fps,info->timing.sample_rate);

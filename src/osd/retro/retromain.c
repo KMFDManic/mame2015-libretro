@@ -93,6 +93,8 @@ bool read_config_enable = false;
 bool auto_save_enable = false;
 bool throttle_enable = false;
 bool game_specific_saves_enable = false;
+bool turboboost_enable = false;
+float turboboost_speed = 1.0f;
 
 // emu flags
 static int tate = 0;
@@ -1789,9 +1791,17 @@ static void Set_Default_Option(void)
    else
       Add_Option("-nothrottle");
 
+   if (turboboost_enable)
+   {
+      char spdbuf[32];
+      snprintf(spdbuf, sizeof(spdbuf), "%.7f", turboboost_speed);
+      Add_Option("-speed");
+      Add_Option(spdbuf);
+   }
+
    Add_Option("-joystick");
    Add_Option("-samplerate");
-   Add_Option("48000");
+   Add_Option("22050");
 
    if(cheats_enable)
       Add_Option("-cheat");

@@ -43,6 +43,8 @@ extern bool hide_warnings;
 extern bool throttle_enable;
 extern bool auto_save_enable;
 extern bool game_specific_saves_enable;
+extern bool turboboost_enable;
+extern float turboboost_speed;
 
 extern int mouseLX[4];
 extern int mouseLY[4];
