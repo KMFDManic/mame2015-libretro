@@ -174,13 +174,13 @@ void retro_set_environment(retro_environment_t cb)
     { option_auto_save, "Auto save/load states; disabled|enabled" },
     { option_mouse, "XY device (Restart); none|lightgun|mouse" },
     { option_throttle, "Enable throttle; disabled|enabled" },
-    { option_turboboost, "Xtreme TurboBoost (Ini Speed); 1.1324691|.25|.50|0.75|1.00|1.25|1.50|1.75|2.00|2.25|2.50|2.75|3.00|3.25|3.50|3.75|4.00|4.25|4.50|4.75|5.00" },
+    { option_turboboost, "Xtreme TurboBoost (Ini Speed); 1.1324691|.75|.80|.85|.90|.95|1.00|1.05|1.10|1.15|1.20|1.25|1.30|1.35|1.40|1.45|1.50|1.55|1.60|1.65|1.70|1.75|1.80|1.85|1.90|1.95|2.00|2.05|2.10|2.15|2.20|2.25" },
     { option_cheats, "Enable cheats; enabled|disabled" },
 //  { option_nobuffer, "Nobuffer patch; disabled|enabled" },
     { option_nag, "Hide nag screen; enabled|disabled" },
     { option_info, "Hide gameinfo screen; enabled|disabled" },
     { option_warnings, "Hide warnings screen; enabled|disabled" },
-    { option_renderer, "Alternate render method; disabled|enabled" },
+    { option_renderer, "Alternate render method; enabled|disabled" },
 
 #if !defined(WANT_PHILIPS_CDI)
     /* ONLY FOR MESS/UME */
