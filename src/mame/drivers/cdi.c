@@ -68,7 +68,7 @@ static ADDRESS_MAP_START( cdimono1_mem, AS_PROGRAM, 16, cdi_state )
 	AM_RANGE(0x00320000, 0x00323fff) AM_DEVREADWRITE8("mk48t08", timekeeper_device, read, write, 0xff00)    /* nvram (only low bytes used) */
 	AM_RANGE(0x00400000, 0x0047ffff) AM_ROM AM_REGION("maincpu", 0)
 	AM_RANGE(0x004fffe0, 0x004fffff) AM_DEVREADWRITE("mcd212", mcd212_device, regs_r, regs_w)
-	//AM_RANGE(0x00500000, 0x0057ffff) AM_RAM
+	AM_RANGE(0x00500000, 0x0057ffff) AM_RAM
 	AM_RANGE(0x00500000, 0x00ffffff) AM_NOP
 	//AM_RANGE(0x00e00000, 0x00efffff) AM_RAM // DVC
 	AM_RANGE(0x80000000, 0x8000807f) AM_DEVREADWRITE("scc68070", cdi68070_device, periphs_r, periphs_w)
@@ -205,7 +205,7 @@ MACHINE_RESET_MEMBER(cdi_state,cdi)
 
 	m_maincpu->reset();
 
-	m_maincpu->set_clock_scale(0.5f);	
+	m_maincpu->set_clock_scale(0.25f);	
 
 	m_dmadac[0] = machine().device<dmadac_sound_device>("dac1");
 	m_dmadac[1] = machine().device<dmadac_sound_device>("dac2");
