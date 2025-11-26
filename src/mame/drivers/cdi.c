@@ -205,6 +205,8 @@ MACHINE_RESET_MEMBER(cdi_state,cdi)
 
 	m_maincpu->reset();
 
+	m_maincpu->set_clock_scale(0.5f);	
+
 	m_dmadac[0] = machine().device<dmadac_sound_device>("dac1");
 	m_dmadac[1] = machine().device<dmadac_sound_device>("dac2");
 }
@@ -309,14 +311,14 @@ MACHINE_RESET_MEMBER(cdi_state,quizrr42)
 
 static MACHINE_CONFIG_START( cdi, cdi_state )
 
-	MCFG_CPU_ADD("maincpu", SCC68070, CLOCK_A/2)
+	MCFG_CPU_ADD("maincpu", SCC68070, CLOCK_A)
 	MCFG_CPU_PROGRAM_MAP(cdimono1_mem)
 
 	MCFG_MCD212_ADD("mcd212")
 	MCFG_MCD212_SET_SCREEN("screen")
 
 	MCFG_SCREEN_ADD("screen", RASTER)
-	MCFG_SCREEN_REFRESH_RATE(60)
+	MCFG_SCREEN_REFRESH_RATE(20)
 	MCFG_SCREEN_VBLANK_TIME(ATTOSECONDS_IN_USEC(0))
 	MCFG_SCREEN_SIZE(384, 302)
 	MCFG_SCREEN_VISIBLE_AREA(0, 384-1, 22, 302-1) //dynamic resolution,TODO

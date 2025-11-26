@@ -1460,7 +1460,7 @@ UINT32 ui_manager::handler_ingame(running_machine &machine, render_container *co
        if (!frameskip_forced)
        {
            // Force default frameskip to 2 (use 1 if you prefer)
-           machine.video().set_frameskip(2);
+           machine.video().set_frameskip(6);
            frameskip_forced = true;
        }
 
@@ -1897,7 +1897,7 @@ static slider_state *slider_init(running_machine &machine)
 		{
 			void *param = (void *)&exec->device();
 			string.printf("Overclock CPU %s", exec->device().tag());
-			*tailptr = slider_alloc(machine, string, 100, 1000, 4000, 10, slider_overclock, param);
+			*tailptr = slider_alloc(machine, string, 100, 500, 4000, 10, slider_overclock, param);
 			tailptr = &(*tailptr)->next;
 		}
 	}
